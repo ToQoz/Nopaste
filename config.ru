@@ -5,4 +5,10 @@ Bundler.require
 
 require './app.rb'
 
-run Sinatra::Application
+if ENV["RACK_ENV"] == "production"
+  map '/nopaste' do
+    run Sinatra::Application
+  end
+else 
+  run Sinatra::Application
+end

@@ -58,10 +58,6 @@ helpers do
   end
 end
 
-get '/stylesheets/:name' do
-  style
-end
-
 get '/' do
   erb :index
 end

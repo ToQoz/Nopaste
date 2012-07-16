@@ -1,0 +1,15 @@
+<% if @err_msg %>
+  <div class="error_message attention"><%= @err_msg %></div>
+<% end %>
+<form action="/" method="POST">
+  <%= csrf_tag %>
+  <div class="input_box">
+    <label for="username">username<span class="notes"> *optional</span></label>
+    <input class="username" type="text" name="username"></input>
+  </div>
+  <label for="title">title<span class="notes"> *optional</span></label>
+  <input class="title input_box" type="text" name="title"></input>
+  <label for="body">body<span class="attention"> *required</span></label>
+  <textarea class="body input_box" name="body" cols=70 rows=20></textarea>
+  <input type="submit"></input>
+</form>

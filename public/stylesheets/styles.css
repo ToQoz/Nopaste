@@ -1,0 +1,15 @@
+.main {
+  width: 800px;
+  margin: 0 auto 0 auto;
+}
+.notes {
+  color: gray;
+}
+.attention {
+  color: red;
+}
+.input_box {
+  display: block;
+  width: 800px;
+  margin: 10px auto 20px auto;
+}

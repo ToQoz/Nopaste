@@ -1,0 +1,10 @@
+/logs/*
+/tmp/*
+/config/deploy.rb
+/Capfile
+/config/config.yml
+/vendor/bundles
+/db/*.db
+/database.log
+
+!.gitkeep

@@ -6,6 +6,7 @@ gem 'rake'
 gem 'sqlite3'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem "rvm-capistrano"
 
 gem 'hashie'
 gem "rack_csrf"

@@ -5,6 +5,4 @@ Bundler.require
 
 require './app.rb'
 
-map '/Nopaste' do
-  run Sinatra::Application
-end
+run Sinatra::Application

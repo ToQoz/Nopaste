@@ -16,6 +16,11 @@ end
 
 configure :development, :test do
   require 'pry'
+  set :database, "sqlite:///db/development.db"
+end
+
+configure :production do
+  set :database, "sqlite:///../../shared/db/production.db"
 end
 
 configure do
@@ -25,8 +30,6 @@ configure do
   use Rack::Csrf, :raise => true
   set :protection, :except => :json_csrf
 end
-
-set :database, 'sqlite:///db/production.db'
 
 ActiveRecord::Base.logger = Logger.new("./database.log")
 

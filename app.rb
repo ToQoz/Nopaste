@@ -38,6 +38,23 @@ class Post < ActiveRecord::Base
   validates_length_of :body, :maximum => 30000, :too_long => "は30,000文字までです."
 end
 
+helpers do
+  def root(str)
+    "/nopaste#{str}"
+  end
+  def h(str)
+    CGI.escapeHTML str.to_s
+  end
+
+  def csrf_token
+    Rack::Csrf.csrf_token(env)
+  end
+
+  def csrf_tag
+    Rack::Csrf.csrf_tag(env)
+  end
+end
+
 get '/stylesheets/:name' do
   style
 end
@@ -54,31 +71,11 @@ end
 post '/' do
   begin
     post = Post.create!(username: params[:username], title: params[:title], body: params[:body])
-    redirect "/#{convert10to62 post.id}"
+    redirect root("/#{convert10to62 post.id}")
   rescue ActiveRecord::RecordInvalid => e
     @err_msg = e.message
+    @post = e.record
     erb :index
-  end
-end
-
-helpers do
-  def pub(str)
-    if ENV["RACK_ENV"] == "production"
-      "/nopaste/#{str}"
-    else 
-      "/#{str}"
-    end
-  end
-  def h(str)
-    CGI.escapeHTML str.to_s
-  end
-
-  def csrf_token
-    Rack::Csrf.csrf_token(env)
-  end
-
-  def csrf_tag
-    Rack::Csrf.csrf_tag(env)
   end
 end
 

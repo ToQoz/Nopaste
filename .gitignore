@@ -1,10 +1,15 @@
 /logs/*
 /tmp/*
+
 /config/deploy.rb
 /Capfile
-/config/config.yml
+
 /vendor/bundles
+/.bundle
+
 /db/*.db
 /database.log
+
+/config/config.yml
 
 !.gitkeep

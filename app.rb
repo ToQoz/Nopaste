@@ -19,6 +19,7 @@ configure :development, :test do
 end
 
 configure do
+  set :public_folder, File.dirname(__FILE__) + '/public'
   config = load_config()
   use Rack::Session::Cookie, :secret => config.app.session_secret
   use Rack::Csrf, :raise => true
@@ -35,6 +36,10 @@ class Post < ActiveRecord::Base
   validates_length_of :username, :maximum => 10, :too_long => "は10文字までです."
   validates_length_of :title, :maximum => 100, :too_long => "は100文字までです."
   validates_length_of :body, :maximum => 30000, :too_long => "は30,000文字までです."
+end
+
+get '/stylesheets/:name' do
+  style
 end
 
 get '/' do
@@ -57,6 +62,13 @@ post '/' do
 end
 
 helpers do
+  def pub(str)
+    if ENV["RACK_ENV"] == "production"
+      "/nopaste/#{str}"
+    else 
+      "/#{str}"
+    end
+  end
   def h(str)
     CGI.escapeHTML str.to_s
   end

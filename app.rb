@@ -42,9 +42,6 @@ class Post < ActiveRecord::Base
 end
 
 helpers do
-  def root(str)
-    "/nopaste#{str}"
-  end
   def h(str)
     CGI.escapeHTML str.to_s
   end
@@ -101,6 +98,10 @@ def convert10to62(i)
     digit << n_map[c+1]
   end while i > 0
   return digit.reverse.join('')
+end
+
+def root(str)
+  "/nopaste#{str}"
 end
 
 def convert62to10(s64)
